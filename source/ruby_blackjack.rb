@@ -8,6 +8,7 @@ class RubyBlackjack
     @deck = Deck.new
     @player = Player.new
     @view = View.new
+    @round = 1
   end
 
   def run
@@ -19,6 +20,8 @@ class RubyBlackjack
   def play_game
     while playing? && !bankrupt?
       # play the game
+      @deck.deal 2
+      sleep 1
     end
     leave_the_club
   end
