@@ -22,6 +22,11 @@ class View
     deal_player_cards cards_in_play[:player]
   end
 
+  def show_player_total player_points
+    puts "You have #{player_points}."
+    puts 'Hit or stay?'
+  end
+
   def thrown_out
     reset_with_header
     puts '"Come back when you got money sucka!"'
@@ -34,6 +39,11 @@ class View
     puts '"Come back anytime!"'
     puts ""
     puts "You've left the club with $#{cash}."
+  end
+
+  def bad_input
+    puts 'Your answer does not amuse the house.'
+    puts ''
   end
 
   def get_user_input

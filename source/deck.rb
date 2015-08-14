@@ -15,8 +15,24 @@ class Deck
     @player_cards = @cards.pop 2
   end
 
+  def player_hit
+    @player_cards << @cards.pop
+  end
+
+  def dealer_hit
+    @dealer_cards << @cards.pop
+  end
+
   def cards_in_play
     { dealer: dealer_cards, player: player_cards }
+  end
+
+  def player_cards_total
+    player_cards.map(&:point_value).inject(:+)
+  end
+  
+  def dealer_cards_total
+    dealer_cards.map(&:point_value).inject(:+)
   end
 
   private
