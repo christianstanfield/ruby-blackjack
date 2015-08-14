@@ -1,5 +1,6 @@
 class Card
   attr_reader :value
+  attr_accessor :flipped
 
   SUITS =   { Spades: '♠',
               Diamonds: '♦',
@@ -23,6 +24,15 @@ class Card
   def initialize suit, value
     @suit = suit
     @value = value
+    @flipped = false
+  end
+
+  def point_value
+    VALUES[value]
+  end
+
+  def height
+    view.length
   end
 
   def view

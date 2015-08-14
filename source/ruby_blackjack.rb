@@ -20,8 +20,11 @@ class RubyBlackjack
   def play_game
     while playing? && !bankrupt?
       # play the game
-      @deck.deal 2
-      sleep 1
+      @deck.deal_original_cards
+      @view.deal_cards @deck.cards_in_play
+
+
+      sleep 3
     end
     leave_the_club
   end

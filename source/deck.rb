@@ -1,21 +1,22 @@
 require_relative 'card'
 
 class Deck
+  attr_reader :dealer_cards, :player_cards
 
   def initialize
     @cards = []
     build_deck
+    @cards.shuffle!
   end
 
-  def deal round
-    i = 0
-    @cards.first.view.length.times do
-      @cards.sample(round).each do |card|
-        print card.view[i][0] + '   '
-      end
-      puts ''
-      i += 1
-    end
+  def deal_original_cards
+    @dealer_cards = @cards.pop 2
+    @dealer_cards.first.flipped = true
+    @player_cards = @cards.pop 2
+  end
+
+  def cards_in_play
+    { dealer: dealer_cards, player: player_cards }
   end
 
   private
