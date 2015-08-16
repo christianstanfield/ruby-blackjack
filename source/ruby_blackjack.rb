@@ -26,6 +26,8 @@ class RubyBlackjack
         player_turn
       end
 
+      @deck.reveal_dealers_card
+
       unless player_busted?
         until dealer_busted? || @dealer_stay
           show_cards
@@ -33,9 +35,8 @@ class RubyBlackjack
         end
       end
 
-
-
-
+      show_cards
+      show_winner
     end
     leave_the_club
   end
@@ -67,9 +68,27 @@ class RubyBlackjack
   end
 
   def dealer_turn
-    @deck.dealer_hit
+    if @deck.dealer_cards_total > 16
+      @dealer_stay = true
+    else
+      @deck.dealer_hit
+    end
     sleep 1
-    
+  end
+
+  def show_winner
+    if player_busted?
+      @view.player_busted
+    elsif dealer_busted?
+      @view.dealer_busted
+    elsif @deck.player_cards_total > @deck.dealer_cards_total
+      @view.player_win @deck.player_cards_total, @deck.dealer_cards_total
+    elsif @deck.dealer_cards_total > @deck.player_cards_total
+      @view.dealer_win @deck.dealer_cards_total, @deck.player_cards_total
+    else
+      @view.draw
+    end
+    sleep 1
   end
 
   def show_cards

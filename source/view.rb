@@ -10,7 +10,7 @@ class View
   end
 
   def deal_round? player
-    reset_with_header
+    puts ''
     puts "You have $#{player.cash} #{player.name}."
     puts ""
     puts 'Deal the next round?'
@@ -44,6 +44,26 @@ class View
   def bad_input
     puts 'Your answer does not amuse the house.'
     puts ''
+  end
+
+  def player_busted
+    puts 'Player busted.'
+  end
+
+  def dealer_busted
+    puts 'Dealer busted.'
+  end
+
+  def player_win player_total, dealer_total
+    puts "Player wins. #{player_total} to #{dealer_total}."
+  end
+
+  def dealer_win dealer_total, player_total
+    puts "Dealer wins. #{dealer_total} to #{player_total}."
+  end
+
+  def draw
+    puts 'Draw.'
   end
 
   def get_user_input
