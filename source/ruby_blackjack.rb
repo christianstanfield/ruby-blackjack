@@ -17,8 +17,9 @@ class RubyBlackjack
   end
 
   def play_game
-    while playing? && !bankrupt?
+    while !bankrupt? && playing?
       setup_the_game
+      place_player_bet
 
       until player_busted? || @player_stay
         show_cards
@@ -46,6 +47,15 @@ class RubyBlackjack
     @deck.deal_original_cards
     @player_stay = false
     @dealer_stay = false
+  end
+
+  def place_player_bet
+    @view.get_players_bet
+    @player.bet = @view.get_user_input.to_i
+    unless @player.bet <= @player.cash && @player.bet > 0
+      @view.bad_input
+      place_player_bet
+    end
   end
 
   def player_turn
@@ -78,12 +88,16 @@ class RubyBlackjack
   def show_winner
     if player_busted?
       @view.player_busted
+      @player.cash -= @player.bet
     elsif dealer_busted?
       @view.dealer_busted
+      @player.cash += @player.bet
     elsif @deck.player_cards_total > @deck.dealer_cards_total
       @view.player_win @deck.player_cards_total, @deck.dealer_cards_total
+      @player.cash += @player.bet
     elsif @deck.dealer_cards_total > @deck.player_cards_total
       @view.dealer_win @deck.dealer_cards_total, @deck.player_cards_total
+      @player.cash -= @player.bet
     else
       @view.draw
     end

@@ -47,6 +47,11 @@ class View
     puts ''
   end
 
+  def get_players_bet
+    puts ''
+    puts 'Place your bet:'
+  end
+
   def player_busted
     puts 'Player busted.'
   end
