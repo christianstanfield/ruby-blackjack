@@ -8,11 +8,10 @@ class RubyBlackjack
     @deck = Deck.new
     @player = Player.new
     @view = View.new
-    @round = 1
   end
 
   def run
-    @view.welcome_screen
+    @view.welcome_screen @deck.blackjack
     @player.name = @view.get_user_input
     play_game
   end

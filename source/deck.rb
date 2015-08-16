@@ -39,6 +39,11 @@ class Deck
     dealer_cards.map(&:point_value).inject(:+)
   end
 
+  def blackjack
+    [ Card.new(:Spades, :King),
+      Card.new(:Hearts, :Ace)]
+  end
+
   private
 
   def build_deck

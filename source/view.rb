@@ -1,12 +1,10 @@
 class View
 
-  def welcome_screen
+  def welcome_screen cards
     reset_with_header
     puts 'Welcome to Ruby Blackjack'
-    puts <<-eos
-
-    eos
-    puts "What's yo name, playa?"
+    draw_cards_on_screen cards
+    puts "What's your name, playa?"
   end
 
   def deal_round? player
@@ -18,8 +16,11 @@ class View
 
   def deal_cards cards_in_play
     reset_with_header
-    deal_dealer_cards cards_in_play[:dealer]
-    deal_player_cards cards_in_play[:player]
+    puts "Dealer's cards:"
+    draw_cards_on_screen cards_in_play[:dealer]
+
+    puts "Your cards:"
+    draw_cards_on_screen cards_in_play[:player]
   end
 
   def show_player_total player_points
@@ -72,8 +73,7 @@ class View
 
   private
 
-  def deal_dealer_cards cards
-    puts "Dealer's cards:"
+  def draw_cards_on_screen cards
     puts ''
     i = 0
     cards.first.height.times do
@@ -83,20 +83,6 @@ class View
         else
           print card.view[i][0] + '   '
         end
-      end
-      puts ''
-      i += 1
-    end
-    puts ''
-  end
-
-  def deal_player_cards cards
-    puts "Your cards:"
-    puts ''
-    i = 0
-    cards.first.height.times do
-      cards.each do |card|
-        print card.view[i][0] + '   '
       end
       puts ''
       i += 1
