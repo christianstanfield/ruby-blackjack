@@ -50,57 +50,25 @@ class RubyBlackjack
   end
 
   def place_player_bet
-    @view.get_players_bet
-    @player.bet = @view.get_user_input.to_i
-    unless @player.bet <= @player.cash && @player.bet > 0
-      @view.bad_input
-      place_player_bet
-    end
+    # fill me in!
   end
 
   def player_turn
-    @view.show_player_total @deck.player_cards_total
-    player_move = @view.get_user_input
+    # fill me in!
     hit_or_stay? player_move
   end
 
   def hit_or_stay? player_move
-    case player_move.chars.first.downcase
-    when 'h'
-      @deck.player_hit
-    when 's'
-      @player_stay = true
-    else
-      @view.bad_input
-      player_turn
-    end
+    # fill me in!
   end
 
   def dealer_turn
-    if @deck.dealer_cards_total > 16
-      @dealer_stay = true
-    else
-      @deck.dealer_hit
-    end
+    # fill me in!
     sleep 1
   end
 
   def show_winner
-    if player_busted?
-      @view.player_busted
-      @player.cash -= @player.bet
-    elsif dealer_busted?
-      @view.dealer_busted
-      @player.cash += @player.bet
-    elsif @deck.player_cards_total > @deck.dealer_cards_total
-      @view.player_win @deck.player_cards_total, @deck.dealer_cards_total
-      @player.cash += @player.bet
-    elsif @deck.dealer_cards_total > @deck.player_cards_total
-      @view.dealer_win @deck.dealer_cards_total, @deck.player_cards_total
-      @player.cash -= @player.bet
-    else
-      @view.draw
-    end
+    # fill me in!
     sleep 1
   end
 
