@@ -1,6 +1,8 @@
 # Ruby $ Blackjack $
 A blackjack game for the terminal, written in Ruby.
 
+<img src="bj-screenshot.png" width="350">
+
 ## Step 1
 Take a look at the existing code. Most of it has been written for you. A few methods remain that need to be filled in. Make sure to also run the application to see visually how it looks so far.
 
